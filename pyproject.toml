@@ -55,6 +55,11 @@ select = ["E", "F", "I", "B", "UP", "SIM", "N", "RUF"]
 # as argument defaults — B008 is a false positive for these frameworks.
 "src/ador/api/*.py" = ["B008"]
 "src/ador/cli.py" = ["B008"]
+# The canonical enums inherit from (str, Enum) deliberately for broad
+# compatibility (Pydantic v1 stacks, older tooling) rather than StrEnum.
+# Behaviour is equivalent for our use and swapping would be a breaking change
+# to external consumers comparing against string literals.
+"src/ador/core/schemas.py" = ["UP042"]
 
 [tool.mypy]
 python_version = "3.11"
